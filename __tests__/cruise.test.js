@@ -1,5 +1,6 @@
 const Ship = require('../src/cruise');
 const Passenger = require('../src/cruise');
+const Port = require('../src/cruise');
 
 describe('Ship', () => {
     it('can be instantiated', () => {
@@ -14,16 +15,28 @@ describe('Ship', () => {
   });
 
 describe('Ship properties', () => {
-    it('tests that I can create a new Ship and give it a name and a startingPort', () => {
-      const ship = new Ship ('Ship 1', 'Porto' )
-      const ship2 = new Ship ('Ship 2', 'Lisbon' )
+    it('tests that I can create a new Ship and give it a name', () => {
+      const ship = new Ship ('Ship 1')
+      const ship2 = new Ship ('Ship 2')
   
       expect(ship.name).toEqual('Ship 1');
-      expect(ship.startingPort).toEqual('Porto')
       expect(ship2.name).toEqual('Ship 2');
+    });
+  });
+
+  describe('Ship properties', () => {
+    it('tests that I can create a new Ship and give it a startingPort', () => {
+      
+      const portPorto = new Port ('Porto') 
+      const portLisbon = new Port ('Lisbon')
+      const ship = new Ship ('Ship 1', portPorto.name)
+      const ship2 = new Ship ('Ship 2', portLisbon.name)
+
+      expect(ship.startingPort).toEqual('Porto')
       expect(ship2.startingPort).toEqual('Lisbon')
     });
   });
+
 
   describe('Passenger properties', () => {
     it('tests that I can create a new Passenger and give them a name', () => {
@@ -52,6 +65,19 @@ describe('Ship properties', () => {
       ship.setSail()
 
       expect(ship.currentPort).toEqual(`Ship 1 is currently at sea.`);
-      
+    });
+  });
+
+  describe('the dock method', () => {
+    it('tests that the function allows the Ship to dock at a new port', () => {
+      const portPorto = new Port ('Porto') 
+      const portLisbon = new Port ('Lisbon')
+      const ship = new Ship ('Ship 1', portPorto.name)
+      const ship2 = new Ship ('Ship 2', portLisbon.name)
+      ship.dock(portLisbon)
+      ship2.dock(portPorto)
+
+      expect(ship.currentPort).toEqual(`Lisbon`);
+      expect(ship2.currentPort).toEqual(`Porto`);
     });
   });
