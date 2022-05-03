@@ -2,7 +2,7 @@
   "name": "cruise-ships",
   "version": "1.0.0",
   "description": "The cruise ships project from MCR Codes",
-  "main": "index.js",
+  "main": "cruise.js",
   "scripts": {
     "test": "jest"
   },
