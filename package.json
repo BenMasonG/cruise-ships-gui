@@ -1,0 +1,14 @@
+{
+  "name": "cruise-ships",
+  "version": "1.0.0",
+  "description": "The cruise ships project from MCR Codes",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Benjamin Mason-Gallagher",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^28.0.3"
+  }
+}
