@@ -8,7 +8,7 @@ describe('Ship', () => {
     });
   });
 
-  describe('Passenger', () => {
+describe('Passenger', () => {
     it('can be instantiated', () => {
      expect(new Passenger()).toBeInstanceOf(Object);
     });
