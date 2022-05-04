@@ -30,3 +30,4 @@ Ship.prototype.dock = function (port) {
     this.currentPort = `${port.name}`
 };
 
+module.exports = Ship;

@@ -1,4 +1,4 @@
-const Port = require('../src/cruise');
+const Port = require('../src/port');
 
 describe('Port', () => {
     it('can be instantiated', () => {
@@ -11,7 +11,16 @@ describe('Port', () => {
       const dover = new Port ('Dover')
       const porto = new Port ('Porto')
   
-      expect(dover.name).toEqual('Dover');
-      expect(porto.name).toEqual('Porto');
+      expect(dover.name).toBe('Dover');
+      expect(porto.name).toBe('Porto');
+    });
+  });
+
+  describe('Port properties', () => {
+    it('tests that a Port object is instantiated as expected', () => {
+      const dover = new Port ('Dover')
+  
+      expect(dover).toEqual({name: 'Dover'});
+      
     });
   });

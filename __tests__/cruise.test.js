@@ -1,6 +1,6 @@
-const Ship = require('../src/cruise');
-const Passenger = require('../src/cruise');
-const Port = require('../src/cruise');
+const Ship = require('../src/ship');
+const Passenger = require('../src/passengers');
+const Port = require('../src/port');
 
 describe('Ship', () => {
     it('can be instantiated', () => {
