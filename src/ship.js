@@ -1,6 +1,7 @@
 function Ship (name, startingPort) {
     this.name = name;
     this.startingPort = startingPort;
+    this.previousPort = null;
     this.currentPort = startingPort;
     this.passengers = [];
 };
@@ -23,7 +24,8 @@ Ship.prototype.getPassenger = function (name) {
 };
 
 Ship.prototype.setSail = function () {
-    this.currentPort = `${this.name} is currently at sea.`
+    this.previousPort = this.currentPort;
+    this.currentPort = `${this.name} is currently at sea.`;
 };
 
 Ship.prototype.dock = function (port) {

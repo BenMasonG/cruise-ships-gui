@@ -14,7 +14,7 @@ describe('Itinerary', () => {
 
         const list1 = new Itinerary (portLisbon, portPorto)
   
-      expect(list1).toEqual({ports: [{name: 'Lisbon'}, {name: 'Porto'}]});
+      expect(list1).toEqual({ports: [portLisbon, portPorto]});
       
     });
   });
