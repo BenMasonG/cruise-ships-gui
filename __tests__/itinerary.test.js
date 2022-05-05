@@ -1,5 +1,4 @@
 const Itinerary = require('../src/itinerary');
-const Port = require('../src/port');
 
 describe('Itinerary', () => {
     it('can be instantiated', () => {

@@ -1,7 +1,4 @@
 const Ship = require('../src/ship');
-const Passenger = require('../src/passengers');
-const Port = require('../src/port');
-const Itinerary = require('../src/itinerary');
 
 describe('Ship', () => {
   describe ('Ship, it\'s properties and it\'s methods', () => {
@@ -85,7 +82,7 @@ describe('Ship', () => {
     });
   
 
-    it.only('tests that the function allows the Ship to dock at a new port and alters the correct ship properties', () => {
+    it('tests that the function allows the Ship to dock at a new port and alters the correct ship properties', () => {
       ship.setSail()
       ship.dock()
       ship2.setSail()
