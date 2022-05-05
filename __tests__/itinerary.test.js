@@ -11,8 +11,7 @@ describe('Itinerary', () => {
     it('tests that I can create a new Itinerary with a ports property', () => {
         const portPorto = new Port ('Porto') 
         const portLisbon = new Port ('Lisbon')
-
-        const list1 = new Itinerary (portLisbon, portPorto)
+        const list1 = new Itinerary ([portLisbon, portPorto])
   
       expect(list1).toEqual({ports: [portLisbon, portPorto]});
       
