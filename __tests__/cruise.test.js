@@ -14,13 +14,13 @@ describe('Ship', () => {
     let ship3
 
     beforeEach(() => {
-      portPorto = new Port ('Porto') 
-      portLisbon = new Port ('Lisbon')
-      itinerary = new Itinerary ([portLisbon, portPorto])
-      itinerary2 = new Itinerary ([portPorto, portLisbon])
-      ship = new Ship ('Ship 1', itinerary)
-      ship2 = new Ship ('Ship 2', itinerary2)
-      ship3 = new Ship ('Ship 3', itinerary)
+      portPorto = {name: 'Porto', ships: [], addShip: jest.fn(), removeShip: jest.fn()};
+      portLisbon = {name: 'Lisbon', ships: [], addShip: jest.fn(), removeShip: jest.fn()};
+      itinerary = {ports: [portLisbon, portPorto]};
+      itinerary2 = {ports: [portPorto, portLisbon]};
+      ship = new Ship ('Ship 1', itinerary);
+      ship2 = new Ship ('Ship 2', itinerary2);
+      ship3 = new Ship ('Ship 3', itinerary);
     });
 
 
@@ -30,7 +30,7 @@ describe('Ship', () => {
   
 
     it('is added to port on instantiation', () => {
-     expect(portLisbon.ships).toContain(ship);
+     expect(portLisbon.addShip).toHaveBeenCalled();
     });
   
 
@@ -59,14 +59,14 @@ describe('Ship', () => {
     });
   
 
-    it('tests that the function allows the Ship to get set sail and alters the correct properties', () => {
+    it('tests that the function allows the Ship to set sail and alters the correct properties', () => {
       ship.setSail();
 
       expect(ship.currentPort).toEqual(`Ship 1 is currently at sea.`);
       expect(ship.previousPort).toEqual(portLisbon);
       expect(ship.docked).toEqual(false);
       expect(ship.portsVisited).toEqual(1);
-      expect(ship.previousPort.ships).toEqual([ship3]);
+      expect(ship.previousPort.removeShip).toHaveBeenCalled();
     });
   
 
@@ -85,7 +85,7 @@ describe('Ship', () => {
     });
   
 
-    it('tests that the function allows the Ship to dock at a new port and alters the correct ship properties', () => {
+    it.only('tests that the function allows the Ship to dock at a new port and alters the correct ship properties', () => {
       ship.setSail()
       ship.dock()
       ship2.setSail()
@@ -95,8 +95,8 @@ describe('Ship', () => {
       expect(ship2.currentPort).toEqual(portLisbon);
       expect(ship.docked).toEqual(true);
       expect(ship2.docked).toEqual(true);
-      expect(ship.currentPort.ships).toContain(ship)
-      expect(ship2.currentPort.ships).toContain(ship2)
+      expect(ship.currentPort.addShip).toHaveBeenCalled();
+      expect(ship2.currentPort.addShip).toHaveBeenCalled();
     });
   
 
