@@ -6,6 +6,7 @@ function Ship (name, itinerary) {
     this.passengers = [];
     this.portsVisited = 0;
     this.docked = true;
+    this.currentPort.addShip(this);
 };
 
 function Port (name) {
@@ -32,6 +33,7 @@ Ship.prototype.setSail = function () {
     } else if (this.portsVisited === this.itinerary.ports.length - 1) {
         throw new Error ("All ports in Itinerary visited so the ship cannot set sail.")
     } else {
+    this.currentPort.removeShip(this);
     this.docked = false;
     this.previousPort = this.currentPort;
     this.currentPort = `${this.name} is currently at sea.`;
