@@ -56,6 +56,13 @@ describe('Ship', () => {
     });
   
 
+    it('tests that the function allows the Ship to get Passengers will throw an error if the ship is not docked', () => {
+      ship.docked = false;
+    
+      expect(() => ship.getPassenger()).toThrowError("The ship is currently at sea so cannot get passengers.");
+    });
+  
+
     it('tests that the function allows the Ship to set sail and alters the correct properties', () => {
       ship.setSail();
 
