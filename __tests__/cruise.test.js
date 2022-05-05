@@ -30,7 +30,7 @@ describe('Ship', () => {
   
 
     it('is added to port on instantiation', () => {
-     expect(portLisbon.addShip).toHaveBeenCalled();
+     expect(portLisbon.addShip).toHaveBeenCalledWith(ship);
     });
   
 
@@ -66,7 +66,7 @@ describe('Ship', () => {
       expect(ship.previousPort).toEqual(portLisbon);
       expect(ship.docked).toEqual(false);
       expect(ship.portsVisited).toEqual(1);
-      expect(ship.previousPort.removeShip).toHaveBeenCalled();
+      expect(ship.previousPort.removeShip).toHaveBeenCalledWith(ship);
     });
   
 
@@ -95,8 +95,8 @@ describe('Ship', () => {
       expect(ship2.currentPort).toEqual(portLisbon);
       expect(ship.docked).toEqual(true);
       expect(ship2.docked).toEqual(true);
-      expect(ship.currentPort.addShip).toHaveBeenCalled();
-      expect(ship2.currentPort.addShip).toHaveBeenCalled();
+      expect(ship.currentPort.addShip).toHaveBeenCalledWith(ship);
+      expect(ship2.currentPort.addShip).toHaveBeenCalledWith(ship2);
     });
   
 
