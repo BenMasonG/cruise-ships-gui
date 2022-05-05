@@ -9,8 +9,8 @@ describe('Itinerary', () => {
 
   describe('Itinerary properties', () => {
     it('tests that I can create a new Itinerary with a ports property', () => {
-        const portPorto = new Port ('Porto') 
-        const portLisbon = new Port ('Lisbon')
+        const portPorto = jest.fn();
+        const portLisbon = jest.fn();
         const list1 = new Itinerary ([portLisbon, portPorto])
   
       expect(list1).toEqual({ports: [portLisbon, portPorto]});

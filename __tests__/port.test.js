@@ -11,9 +11,9 @@ describe('Port', () => {
     beforeEach(() => {
       dover = new Port ('Dover');
       porto = new Port ('Porto');
-      ship = {};
-      ship2 = {};
-      ship3 = {};
+      ship = jest.fn();
+      ship2 = jest.fn();
+      ship3 = jest.fn();
    });
 
     it('can be instantiated', () => {
