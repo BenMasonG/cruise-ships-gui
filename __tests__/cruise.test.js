@@ -68,7 +68,7 @@ describe('Ship properties', () => {
   });
 
   describe('the setSail method', () => {
-    it('tests that the function allows the Ship to get set sail', () => {
+    it('tests that the function allows the Ship to get set sail and alters the correct properties', () => {
       const portPorto = new Port ('Porto') 
       const portLisbon = new Port ('Lisbon')
       const itinerary = new Itinerary ([portLisbon, portPorto])
@@ -77,11 +77,38 @@ describe('Ship properties', () => {
 
       expect(ship.currentPort).toEqual(`Ship 1 is currently at sea.`);
       expect(ship.previousPort).toEqual(portLisbon);
+      expect(ship.docked).toEqual(false);
+      expect(ship.portsVisited).toEqual(1);
+    });
+  });
+
+  describe('the setSail method', () => {
+    it('tests that the ship cannot set sail if it is at the last port in the itinerary', () => {
+      const portPorto = new Port ('Porto') 
+      const portLisbon = new Port ('Lisbon')
+      const itinerary = new Itinerary ([portLisbon, portPorto])
+      const ship = new Ship ('Ship 1', itinerary)
+      ship.setSail()
+      ship.dock()
+
+      expect(() => ship.setSail()).toThrowError("All ports in Itinerary visited so the ship cannot set sail.");
+    });
+  });
+
+  describe('the setSail method', () => {
+    it('tests that the ship cannot set sail if it is not docked', () => {
+      const portPorto = new Port ('Porto') 
+      const portLisbon = new Port ('Lisbon')
+      const itinerary = new Itinerary ([portLisbon, portPorto])
+      const ship = new Ship ('Ship 1', itinerary)
+      ship.docked = false
+      
+      expect(() => ship.setSail()).toThrowError("The ship has already set sail.");
     });
   });
 
   describe('the dock method', () => {
-    it('tests that the function allows the Ship to dock at a new port', () => {
+    it('tests that the function allows the Ship to dock at a new port and alters the correct ship properties', () => {
       const portPorto = new Port ('Porto') 
       const portLisbon = new Port ('Lisbon')
       const itinerary = new Itinerary ([portLisbon, portPorto])
@@ -95,5 +122,19 @@ describe('Ship properties', () => {
 
       expect(ship.currentPort).toEqual(portPorto);
       expect(ship2.currentPort).toEqual(portLisbon);
+      expect(ship.docked).toEqual(true);
+      expect(ship2.docked).toEqual(true);
+    });
+  });
+  
+  describe('the dock method', () => {
+    it('tests that the function will throw an error if the ship is already docked', () => {
+      const portPorto = new Port ('Porto') 
+      const portLisbon = new Port ('Lisbon')
+      const itinerary = new Itinerary ([portLisbon, portPorto])
+      const ship = new Ship ('Ship 1', itinerary)
+     
+
+      expect(() => ship.dock()).toThrowError("The ship is already docked.");
     });
   });

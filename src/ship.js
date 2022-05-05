@@ -40,7 +40,7 @@ Ship.prototype.setSail = function () {
 
 Ship.prototype.dock = function () {
     if (this.docked === true) {
-        throw new Error("The ship is already docked")
+        throw new Error("The ship is already docked.")
     } else {
     this.docked = true;
     this.currentPort = this.itinerary.ports[this.portsVisited];
