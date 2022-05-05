@@ -14,6 +14,17 @@ describe('Ship', () => {
     });
   });
 
+  describe('Ship', () => {
+    it('is added to port on instantiation', () => {
+      const portPorto = new Port ('Porto') 
+      const portLisbon = new Port ('Lisbon')
+      const itinerary = new Itinerary ([portLisbon, portPorto])
+      const ship = new Ship ('Ship 1', itinerary)
+
+     expect(portLisbon.ships).toContain(ship);
+    });
+  });
+
 describe('Ship properties', () => {
     it('tests that I can create a new Ship and give it a name', () => {
       const portPorto = new Port ('Porto') 
@@ -104,6 +115,19 @@ describe('Ship properties', () => {
       ship.docked = false
       
       expect(() => ship.setSail()).toThrowError("The ship has already set sail.");
+    });
+  });
+
+  describe('the setSail method', () => {
+    it('tests that the ship will be removed from the ports properties when it sets sail.', () => {
+      const portPorto = new Port ('Porto') 
+      const portLisbon = new Port ('Lisbon')
+      const itinerary = new Itinerary ([portLisbon, portPorto])
+      const ship = new Ship ('Ship 1', itinerary)
+      const ship2 = new Ship ('Ship 2', itinerary)
+      ship.setSail()
+      
+      expect(ship.previousPort.ships).toEqual([ship2]);
     });
   });
 

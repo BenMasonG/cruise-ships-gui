@@ -39,6 +39,6 @@ describe('Port', () => {
       port.removeShip(ship)
 
      expect(port.ships).toEqual([ship2]);
-     expext(()=> port.removeShip(ship3)).toThrowError('The named ship is not currently at this port.');
+     expect(()=> port.removeShip(ship3)).toThrowError('The named ship is not currently at this port.');
     });
   });
