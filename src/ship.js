@@ -47,6 +47,7 @@ Ship.prototype.dock = function () {
     } else {
     this.docked = true;
     this.currentPort = this.itinerary.ports[this.portsVisited];
+    this.currentPort.addShip(this)
     };
 };
 

@@ -80,16 +80,18 @@ describe('Ship properties', () => {
 
   describe('the setSail method', () => {
     it('tests that the function allows the Ship to get set sail and alters the correct properties', () => {
-      const portPorto = new Port ('Porto') 
+      const portPorto = new Port ('Porto');
       const portLisbon = new Port ('Lisbon')
-      const itinerary = new Itinerary ([portLisbon, portPorto])
-      const ship = new Ship ('Ship 1', itinerary)
-      ship.setSail()
+      const itinerary = new Itinerary ([portLisbon, portPorto]);
+      const ship = new Ship ('Ship 1', itinerary);
+      const ship2 = new Ship ('Ship 2', itinerary);
+      ship.setSail();
 
       expect(ship.currentPort).toEqual(`Ship 1 is currently at sea.`);
       expect(ship.previousPort).toEqual(portLisbon);
       expect(ship.docked).toEqual(false);
       expect(ship.portsVisited).toEqual(1);
+      expect(ship.previousPort.ships).toEqual([ship2]);
     });
   });
 
@@ -118,19 +120,6 @@ describe('Ship properties', () => {
     });
   });
 
-  describe('the setSail method', () => {
-    it('tests that the ship will be removed from the ports properties when it sets sail.', () => {
-      const portPorto = new Port ('Porto') 
-      const portLisbon = new Port ('Lisbon')
-      const itinerary = new Itinerary ([portLisbon, portPorto])
-      const ship = new Ship ('Ship 1', itinerary)
-      const ship2 = new Ship ('Ship 2', itinerary)
-      ship.setSail()
-      
-      expect(ship.previousPort.ships).toEqual([ship2]);
-    });
-  });
-
   describe('the dock method', () => {
     it('tests that the function allows the Ship to dock at a new port and alters the correct ship properties', () => {
       const portPorto = new Port ('Porto') 
@@ -148,6 +137,8 @@ describe('Ship properties', () => {
       expect(ship2.currentPort).toEqual(portLisbon);
       expect(ship.docked).toEqual(true);
       expect(ship2.docked).toEqual(true);
+      expect(ship.currentPort.ships).toContain(ship)
+      expect(ship2.currentPort.ships).toContain(ship2)
     });
   });
   
