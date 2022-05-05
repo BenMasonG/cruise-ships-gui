@@ -23,6 +23,9 @@ function Itinerary (port) {
 };
 
 Ship.prototype.getPassenger = function (name) {
+    if (this.docked === false) {
+        throw new Error("The ship is currently at sea so cannot get passengers.")
+    }
     const passenger = new Passenger (name)
     this.passengers.push(passenger)
 };
