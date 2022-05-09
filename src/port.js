@@ -1,3 +1,4 @@
+(function exportPort() {
 function Port (name) {
     this.name = name;
     this.ships = [];
@@ -15,4 +16,9 @@ Port.prototype.removeShip = function (ship) {
     throw new Error('The named ship is not currently at this port.');
 };
 
-module.exports = Port;
+ if (typeof module !== 'undefined' && module.exports) {
+    module.exports = Port;
+ } else {
+     window.Port = Port;
+ }
+}());

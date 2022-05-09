@@ -9,11 +9,22 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body class="flex-container">
-  <div id="viewport"></div>
+  <div id="viewport">
+    <div id="ports"> </div>
+  </div>
   <script src="./src/ship.js"></script>
+  <script src="./src/port.js"></script>
+  <script src="./src/itinerary.js"></script>
   <script src="./src/controller.js"></script>
   <script>
     const controller = new Controller ();
+    const itinerary = new Itinerary ([
+      new Port('Porto'),
+      new Port('Lisbon'),
+      new Port('Paris'),
+      new Port ('Amsterdam')
+  ]);
+  controller.renderPorts(itinerary.ports);
   </script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+(function exportShip() {
 function Ship (name, itinerary) {
     this.name = name;
     this.itinerary = itinerary;
@@ -9,17 +10,8 @@ function Ship (name, itinerary) {
     this.currentPort.addShip(this);
 };
 
-function Port (name) {
-    this.name = name;
-    this.ships = [];
-};
-
 function Passenger (name) {
     this.name = name;
-};
-
-function Itinerary (port) {
-    this.ports = port;
 };
 
 Ship.prototype.getPassenger = function (name) {
@@ -54,16 +46,9 @@ Ship.prototype.dock = function () {
     };
 };
 
-Port.prototype.addShip = function (ship) {
-    this.ships.push(ship) 
-};
-
-Port.prototype.removeShip = function (ship) {
-    const index = this.ships.indexOf(ship);
-    if (index > -1) {
-        this.ships.splice(index, 1)
-    } else
-    throw new Error('The named ship is not currently at this port.');
-};
-
-module.exports = Ship;
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = Ship;
+ } else {
+     window.Ship = Ship;
+ }
+}());
