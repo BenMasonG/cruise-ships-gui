@@ -29,7 +29,15 @@ function Controller () {
               portsElement.style.width = `${portsElementWidth + 256}px`;
           })
       };
-  
+
+  Controller.prototype.renderShip = function renderShip (ship) {
+    const shipPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+    const portsElement = document.querySelector(`[data-port-index='${shipPortIndex}']`);
+    const shipElement = document.querySelector('#ship');
+    shipElement.style.top = `${portsElement.offsetTop + 32}px`;
+    shipElement.style.left = `${portsElement.offsetLeft - 32}px`;
+  }
+    
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = Controller;
  } else {

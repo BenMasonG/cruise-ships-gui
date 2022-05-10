@@ -11,6 +11,7 @@
 <body class="flex-container">
   <div id="viewport">
     <div id="ports"> </div>
+    <div id="ship"></div>
   </div>
   <script src="./src/ship.js"></script>
   <script src="./src/port.js"></script>
@@ -24,7 +25,9 @@
       new Port('Paris'),
       new Port ('Amsterdam')
   ]);
+  const ship = new Ship('Boaty McBoatFace', itinerary)
   controller.renderPorts(itinerary.ports);
+  controller.renderShip(ship);
   </script>
 </body>
 </html>
