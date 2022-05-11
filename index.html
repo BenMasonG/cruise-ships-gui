@@ -7,27 +7,33 @@
   <title>Cruise Ship</title>
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orienta&display=swap" rel="stylesheet">
 </head>
 <body class="flex-container">
   <div id="viewport">
     <div id="ports"> </div>
     <div id="ship"></div>
+    <button id="sailbutton">Set sail</button>
   </div>
   <script src="./src/ship.js"></script>
   <script src="./src/port.js"></script>
   <script src="./src/itinerary.js"></script>
   <script src="./src/controller.js"></script>
   <script>
-    const controller = new Controller ();
-    const itinerary = new Itinerary ([
+    
+const itinerary = new Itinerary ([
       new Port('Porto'),
       new Port('Lisbon'),
       new Port('Paris'),
       new Port ('Amsterdam')
   ]);
   const ship = new Ship('Boaty McBoatFace', itinerary)
+  const controller = new Controller (ship);
+
   controller.renderPorts(itinerary.ports);
-  controller.renderShip(ship);
+  controller.renderShip();
   </script>
 </body>
 </html>
