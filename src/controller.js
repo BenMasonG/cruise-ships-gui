@@ -45,6 +45,8 @@ function Controller (ship) {
     const shipElement = document.querySelector('#ship');
     shipElement.style.top = `${portsElement.offsetTop + 32}px`;
     shipElement.style.left = `${portsElement.offsetLeft - 32}px`;
+
+    this.headsUpDisplay();
   }
     
   Controller.prototype.setSail = function setSail () {
@@ -70,6 +72,7 @@ function Controller (ship) {
               ship.setSail();
               ship.dock();
               this.renderMessage(`We have arrived at ${ship.currentPort.name}`);
+              this.updateHeadsUpDisplay();
               clearInterval(sailInterval);
           }
 
@@ -89,6 +92,33 @@ function Controller (ship) {
           viewport.removeChild(messageElement);
       }, 2000);
   };
+
+  Controller.prototype.headsUpDisplay = function headsUpDisplay () {
+    const currentPort = document.createElement('div');
+    currentPort.id = 'currentport';
+    currentPort.innerText = `Current Port: ${ship.currentPort.name}`;
+
+    const flexContainer = document.querySelector('.flex-container');
+    flexContainer.appendChild(currentPort);
+
+    const nextPort = document.createElement('div');
+    nextPort.id = 'nextport';
+    nextPort.innerText = `Next Port: ${ship.itinerary.ports[this.ship.portsVisited + 1].name}`
+
+    flexContainer.appendChild(nextPort);
+};
+
+Controller.prototype.updateHeadsUpDisplay = function updateHeadsUpDisplay () {
+    const currentPort = document.querySelector('#currentport');
+    currentPort.innerText = `Current Port: ${ship.currentPort.name}`;
+
+    const nextPort = document.querySelector('#nextport');
+    if ( this.ship.portsVisited +1 < this.ship.itinerary.ports.length) {
+    nextPort.innerText = `Next Port: ${ship.itinerary.ports[this.ship.portsVisited + 1].name}`
+    } else {
+        nextPort.innerText = 'Next Port: There are no more ports on the itinerary'
+    }
+};
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = Controller;

@@ -71,3 +71,17 @@ body {
     background-color: white;
     text-align: center;
   }
+
+  #currentport {
+      color: yellow;
+      align-self: flex-start;
+      flex-basis: 10%;
+      font-size: large;
+  }
+
+  #nextport {
+    color: yellow;
+    align-self: flex-start;
+    flex-basis: 10%;
+    font-size: large;
+}
