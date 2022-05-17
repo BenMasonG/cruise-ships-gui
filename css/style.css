@@ -13,6 +13,17 @@ body {
     align-items: center;
 }
 
+#input-container {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    justify-content: space-between;
+}
+
+#port-list {
+    color: yellow;
+}
+
 #viewport {
     width: 1280px;
     height: 256px;
@@ -84,4 +95,12 @@ body {
     align-self: flex-start;
     flex-basis: 10%;
     font-size: large;
+}
+#addportbutton {
+    align-self: flex-start;
+    flex-basis: 5% ;
+}
+
+#portinput {
+    align-self: flex-start;
 }

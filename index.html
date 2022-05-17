@@ -12,6 +12,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Orienta&display=swap" rel="stylesheet">
 </head>
 <body class="flex-container">
+  <div id="input-container">
+  <input id="portinput" placeholder="Enter Port">
+  <button id="addportbutton">Enter</button>
+  <ol id="port-list">
+  </ol>
+  <button id="confirm-itinerary-button">Confirm Itinerary</button>
+  </div>
   <div id="viewport">
     <div id="ports"> </div>
     <div id="ship"></div>
@@ -21,19 +28,15 @@
   <script src="./src/port.js"></script>
   <script src="./src/itinerary.js"></script>
   <script src="./src/controller.js"></script>
+  <script src="./src/button.js"></script>s
   <script>
-    
-const itinerary = new Itinerary ([
-      new Port('Porto'),
-      new Port('Lisbon'),
-      new Port('Paris'),
-      new Port ('Amsterdam')
-  ]);
-  const ship = new Ship('Boaty McBoatFace', itinerary)
-  const controller = new Controller (ship);
 
-  controller.renderPorts(itinerary.ports);
-  controller.renderShip();
+    let ship;
+    let controller;
+
+    const itinerary = new Itinerary ([
+    ]);
+
   </script>
 </body>
 </html>
